@@ -1,7 +1,7 @@
 'use client'
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
-import { Instagram, Facebook, Mail } from '@mui/icons-material'
+import { Instagram, Facebook, Mail, VolumeOff, VolumeUp, PlayArrow } from '@mui/icons-material'
 
 const LandingPageContainer = styled('div')({
     height: '100vh',
@@ -23,9 +23,20 @@ const LandingPageContainer = styled('div')({
         height: '100vh',
         objectFit: 'cover',
         transform: 'translate(-50%, -50%)',
-        background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
+        backgroundColor: 'white',
+        opacity: 0.4,
         zIndex: -1,
     },
+})
+
+const MuteButton = styled('div')({
+    position: 'absolute',
+    top: '2vh',
+    left: '2vw',
+    zIndex: 2,
+    cursor: 'pointer',
+    color: 'white',
+    fontSize: '7vh',
 })
 
 const Logo = styled('h1')({
@@ -43,7 +54,7 @@ const Logo = styled('h1')({
         letterSpacing: '2vw',
     },
     '@media (min-width: 1200px)': {
-        fontSize: '10vw',
+        fontSize: '12vw',
         letterSpacing: '5vw',
     },
 })
@@ -91,48 +102,48 @@ const Icon = styled.div`
     font-size: 30px;
 `
 
-const BottomRightContact = styled('div')({
-    position: 'absolute',
-    bottom: '2vh',
-    right: '2vw',
-    color: 'white',
-    fontSize: '16px',
-    a: {
-        color: 'white',
-        textDecoration: 'none',
-        '&:hover': {
-            animation: 'glow 1s ease-in-out infinite alternate',
-        },
-    },
-    '@keyframes glow': {
-        '0%': {
-            textShadow: '0 5px 10px white',
-        },
-        '100%': {
-            textShadow: '0 10px 100px white',
-        },
-    },
-    '@media (max-width: 768px)': {
-        display: 'none',
-    },
-})
-
-const MobileOnlyIcon = styled(Icon)({
-    '@media (min-width: 768px)': {
-        display: 'none',
-    },
+const PlayButton = styled('div')({
+    marginBottom: '7vh',
+    cursor: 'pointer',
+    fontSize: '80px',
 })
 
 const LandingPage = () => {
+    const audioRef = useRef<HTMLAudioElement | null>(null)
+    const [isMuted, setIsMuted] = useState(true)
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    const toggleMute = () => {
+        if (audioRef.current) {
+            audioRef.current.muted = !isMuted
+            setIsMuted(!isMuted)
+        }
+    }
+
+    const handlePlay = () => {
+        if (audioRef.current) {
+            audioRef.current.muted = false
+            audioRef.current.play()
+            setIsPlaying(true)
+            setIsMuted(false) // Ensure the audio starts unmuted when first played
+        }
+    }
+
     return (
         <LandingPageContainer>
+            <audio ref={audioRef} src="./loop.mp3" loop />
+            {isPlaying && <MuteButton onClick={toggleMute}>{isMuted ? <VolumeOff fontSize="inherit" /> : <VolumeUp fontSize="inherit" />}</MuteButton>}
             <video autoPlay loop muted playsInline>
                 <source src="./grunge.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-
-            <Logo>BELAKISS</Logo>
+            <Logo onClick={handlePlay}>BELAKISS</Logo>
             <BottomAnchor>
+                {!isPlaying && (
+                    <PlayButton>
+                        <PlayArrow fontSize="inherit" onClick={handlePlay} />
+                    </PlayButton>
+                )}
                 <p>FOR THOSE WHO DON&apos;T BELIEVE</p>
                 <p>20 YEAR ANNIVERSARY RE-RELEASE</p>
                 <p>COMING IN 2025</p>
@@ -157,21 +168,13 @@ const LandingPage = () => {
                             </svg>
                         </a>
                     </Icon>
-                    <MobileOnlyIcon>
+                    <Icon>
                         <a href="mailto:belakissmusic@gmail.com" rel="noopener" title="Inquiries" target="_blank">
                             <Mail fontSize="inherit" />
                         </a>
-                    </MobileOnlyIcon>
+                    </Icon>
                 </IconContainer>
             </BottomAnchor>
-            <BottomRightContact>
-                <p>
-                    Inquires: &nbsp;
-                    <a href="mailto:belakissmusic@gmail.com" rel="noopener" title="Inquiries" target="_blank">
-                        belakissmusic@gmail.com
-                    </a>
-                </p>
-            </BottomRightContact>
         </LandingPageContainer>
     )
 }
