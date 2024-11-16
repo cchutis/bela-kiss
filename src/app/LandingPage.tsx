@@ -22,7 +22,6 @@ const LandingPageContainer = styled('div')({
         height: '100vh',
         objectFit: 'cover',
         transform: 'translate(-50%, -50%)',
-        opacity: 0.5,
         zIndex: -1,
     },
 })
@@ -35,10 +34,11 @@ const Logo = styled('h1')({
 
     // Minimum and maximum limits for better control
     '@media (max-width: 768px)': {
+        fontSize: '12vw',
         letterSpacing: '4vw',
     },
     '@media (max-width: 480px)': {
-        fontSize: '6vw',
+        fontSize: '12vw',
         letterSpacing: '2vw',
     },
     '@media (min-width: 1200px)': {
