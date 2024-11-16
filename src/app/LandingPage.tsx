@@ -23,7 +23,7 @@ const LandingPageContainer = styled('div')({
         height: '100vh',
         objectFit: 'cover',
         transform: 'translate(-50%, -50%)',
-        opacity: 0.5,
+        background: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
         zIndex: -1,
     },
 })
