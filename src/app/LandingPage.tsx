@@ -39,11 +39,12 @@ const MuteButton = styled('div')({
     fontSize: '7vh',
 })
 
-const Logo = styled('h1')({
+const Logo = styled('h1')<{ isplaying: boolean }>((props) => ({
     fontSize: '10vw',
     letterSpacing: '5vw',
-    opacity: 0.8,
-    color: 'white',
+    opacity: props.isplaying ? 1 : 0.5,
+    color: props.isplaying ? '#040404' : 'white',
+    textShadow: '1px 1px 100px #840573',
 
     '@media (max-width: 768px)': {
         fontSize: '12vw',
@@ -57,7 +58,7 @@ const Logo = styled('h1')({
         fontSize: '12vw',
         letterSpacing: '5vw',
     },
-})
+}))
 
 const BottomAnchor = styled('div')({
     position: 'absolute',
@@ -125,7 +126,7 @@ const LandingPage = () => {
             audioRef.current.muted = false
             audioRef.current.play()
             setIsPlaying(true)
-            setIsMuted(false) // Ensure the audio starts unmuted when first played
+            setIsMuted(false)
         }
     }
 
@@ -133,11 +134,20 @@ const LandingPage = () => {
         <LandingPageContainer>
             <audio ref={audioRef} src="./loop.mp3" loop />
             {isPlaying && <MuteButton onClick={toggleMute}>{isMuted ? <VolumeOff fontSize="inherit" /> : <VolumeUp fontSize="inherit" />}</MuteButton>}
-            <video autoPlay loop muted playsInline>
-                <source src="./grunge.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            <Logo onClick={handlePlay}>BELAKISS</Logo>
+            {isPlaying ? (
+                <video key="glitch-video" autoPlay loop playsInline>
+                    <source src="/glitch.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            ) : (
+                <video key="grunge-video" autoPlay loop muted playsInline>
+                    <source src="/grunge.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            )}
+            <Logo isplaying={isPlaying} onClick={handlePlay}>
+                BELAKISS
+            </Logo>
             <BottomAnchor>
                 {!isPlaying && (
                     <PlayButton>
