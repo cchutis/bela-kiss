@@ -12,7 +12,7 @@ import Comments from "./Comments";
 import MarqueeBar from "./MarqueeBar";
 import { bulletins, comments, releaseInfo } from "../data";
 import CTAs from "./CTAs";
-import { OpenWindowOptions } from "../types";
+import type { OpenWindowOptions } from "../types";
 
 const Root = styled(Box)({
   maxWidth: 920,
@@ -36,7 +36,7 @@ export default function MyspaceBelaKiss(props: {
   showToast: (msg: string) => void;
   openWindow: (opts: OpenWindowOptions) => void;
 }) {
-  const { showToast, openWindow } = props;
+  const { showToast } = props;
   return (
     <Root>
       <MarqueeBar text="New single 'Graveyard Waltz' out Oct 31 — East Coast tour soon — Add us & say hi!" />
@@ -45,7 +45,10 @@ export default function MyspaceBelaKiss(props: {
         <Sidebar>
           <MyspacePlayer src="/loop.mp3" />
           <ReleaseInfo info={releaseInfo} />
-          <CTAs ctas={releaseInfo.ctas} onClickCTA={(label) => showToast(label)} />
+          <CTAs
+            ctas={releaseInfo.ctas as unknown as Array<{ label: string; href: string; kind?: 'primary' | 'secondary' }>}
+            onClickCTA={(label) => showToast(label)}
+          />
         </Sidebar>
         <Main>
           <About onAddFriend={() => showToast("Friend request sent!")} onSendMessage={() => showToast("Message sent!")} />

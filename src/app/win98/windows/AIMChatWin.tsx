@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Box, Divider, Typography, TextField, Button, List, ListItem, ListItemText } from "@mui/material";
+import { Box, Divider, TextField, Button, List, ListItem, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { aimBuddies, aimSeedChats, AimMessage } from "../data";
 

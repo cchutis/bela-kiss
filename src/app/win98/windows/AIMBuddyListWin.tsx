@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Typography, TextField, Button, Stack, Collapse } from "@mui/material";
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, TextField, Button, Stack, Collapse } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { aimBuddies, AimBuddy } from "../data";
 import { OpenWindowOptions } from "../types";

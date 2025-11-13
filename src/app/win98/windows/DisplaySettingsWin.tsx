@@ -14,7 +14,10 @@ export default function DisplaySettingsWin(props: { initial?: DisplaySettings })
 
   const apply = () => {
     const detail: DisplaySettings = { wallpaperUrl: url || null, wallpaperMode: mode, iconPreset: preset };
-    window.dispatchEvent(new CustomEvent<DisplaySettings>("bk-apply-settings", { detail } as any));
+    window.dispatchEvent(new CustomEvent<DisplaySettings>(
+      "bk-apply-settings",
+      { detail } as CustomEventInit<DisplaySettings>
+    ));
   };
 
   const clear = () => {
@@ -22,7 +25,10 @@ export default function DisplaySettingsWin(props: { initial?: DisplaySettings })
     setMode("tile");
     setPreset("win98");
     const detail: DisplaySettings = { wallpaperUrl: null, wallpaperMode: "tile", iconPreset: "win98" };
-    window.dispatchEvent(new CustomEvent<DisplaySettings>("bk-apply-settings", { detail } as any));
+    window.dispatchEvent(new CustomEvent<DisplaySettings>(
+      "bk-apply-settings",
+      { detail } as CustomEventInit<DisplaySettings>
+    ));
   };
 
   return (

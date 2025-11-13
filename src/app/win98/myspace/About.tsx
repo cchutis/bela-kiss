@@ -13,7 +13,7 @@ export default function About(props: { onAddFriend: () => void; onSendMessage: (
       <Typography variant="subtitle2" fontWeight={700}>About Me</Typography>
       <Typography variant="body2">
         Bela Kiss crafts nocturnal rock for haunted highways and neon alleys. New single
-        "Graveyard Waltz" descends Oct 31, 2025. See you in the dark.
+        &quot;Graveyard Waltz&quot; descends Oct 31, 2025. See you in the dark.
       </Typography>
       <Stack direction="row" spacing={1}>
         <Button size="small" variant="contained" onClick={onAddFriend}>Add Bela Kiss as a Friend</Button>
