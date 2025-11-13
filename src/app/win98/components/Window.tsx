@@ -4,6 +4,7 @@ import React from "react";
 import { Box, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Bounds, WindowState, OpenWindowOptions } from "../types";
+import type { DisplaySettings } from "../types";
 import InternetExplorerWin from "../windows/InternetExplorerWin";
 import NotepadWin from "../windows/NotepadWin";
 import ExplorerWin from "../windows/ExplorerWin";
@@ -187,8 +188,10 @@ export default function Window(props: {
         return <AIMBuddyListWin openWindow={openWindow} />;
       case "aim_chat":
         return <AIMChatWin payload={win.payload as { buddyId: string }} />;
-      case "settings":
-        return <DisplaySettingsWin initial={(win.payload as any)?.settings} />;
+      case "settings": {
+        const settingsPayload = win.payload as { settings?: DisplaySettings } | undefined;
+        return <DisplaySettingsWin initial={settingsPayload?.settings} />;
+      }
       case "notepad":
         return <NotepadWin />;
       case "explorer":

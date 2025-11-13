@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import type { CSSProperties } from "react";
 import { Box, Typography, Menu, MenuItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import type { IconMap } from "../iconPaths";
@@ -46,7 +47,11 @@ const IconWrap = styled(Box)(({ theme }) => ({
   },
 }));
 
-const IconImg = styled("img")({ width: 32, height: 32, imageRendering: "pixelated" as any });
+const IconImg = styled("img")({
+  width: 32,
+  height: 32,
+  imageRendering: "pixelated" as CSSProperties["imageRendering"],
+});
 
 const IconLabel = styled(Typography)({
   marginTop: 6,

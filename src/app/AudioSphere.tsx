@@ -9,7 +9,10 @@ const useAudioAnalyser = (audioRef: React.RefObject<HTMLAudioElement>) => {
 
     useEffect(() => {
         if (audioRef.current) {
-            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+            const W = window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }
+            const AC = W.AudioContext || W.webkitAudioContext
+            if (!AC) return
+            const audioContext = new AC()
             const source = audioContext.createMediaElementSource(audioRef.current)
             const analyserNode = audioContext.createAnalyser()
             analyserNode.fftSize = 256
