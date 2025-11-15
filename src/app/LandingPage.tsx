@@ -137,6 +137,7 @@ const BottomAnchor = styled('div')({
     },
     a: {
         color: 'white',
+        textDecoration: 'underline',
         '&:hover': {
             color: 'maroon',
         },
@@ -333,10 +334,9 @@ const LandingPage = () => {
                 <p>FOR THOSE WHO DON&apos;T BELIEVE</p>
                 <p className="mmxxv">MMXXV</p>
                 <p>OUT 12/12 ON ALL STREAMING PLATFORMS</p>
-                <p>VINYL PREORDERS BEGIN 11/15</p>
                 <p>
-                    <a href="https://distrokid.com/hyperfollow/belakiss/knight-without-his-sky-mmxxv-edition" rel="noopener" title="Presave: Knight Without His Sky (11/14)" target="_blank">
-                        PRESAVE KNIGHT WITHOUT HIS SKY SINGLE ON SPOTIFY - 11/14
+                    <a href="https://www.sandsoftimerecordings.com/shop" rel="noopener" title="Presave: Album (12/12)" target="_blank">
+                        PREORDERS LIVE NOW - SANDS OF TIME RECORDINGS SHOP
                     </a>
                 </p>
                 <p>
