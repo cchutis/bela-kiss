@@ -228,7 +228,7 @@ export default function LandingPage() {
                 </a>
                 <div className={styles.releaseInfo}>
                     <p className={styles.eyebrow}>MMXXV EDITION / OUT NOW</p>
-                    <h2 id="release-title">For Those Who<br/>Don’t Believe</h2>
+                    <h2 id="release-title">For Those Who<br/>Don’t Believe MMXXV</h2>
                     <p className={styles.description}>The 2005 debut, re-recorded by the original lineup.</p>
                     <div className={styles.listenLinks}>
                         <a href="https://open.spotify.com/album/3uJFuHewaNxRFxUhZzNPHG">Listen on Spotify ↗</a>
